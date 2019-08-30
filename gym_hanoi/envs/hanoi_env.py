@@ -14,7 +14,7 @@ class HanoiEnv(gym.Env):
         self.num_disks = 4
         self.env_noise = 0
         self.action_space = spaces.Discrete(6)
-        self.observation_space = spaces.Tuple(self.num_disks*(spaces.Discrete(3),))
+        self.observation_space = spaces.MultiDiscrete([3 for d in range(self.num_disks)])
 
         self.current_state = None
         self.goal_state = self.num_disks*(2,)
@@ -114,7 +114,7 @@ class HanoiEnv(gym.Env):
     def set_env_parameters(self, num_disks=4, env_noise=0, verbose=True):
         self.num_disks = num_disks
         self.env_noise = env_noise
-        self.observation_space = spaces.Tuple(self.num_disks*(spaces.Discrete(3),))
+        self.observation_space = spaces.MultiDiscrete([3 for d in range(self.num_disks)])
         self.goal_state = self.num_disks*(2,)
 
         if verbose:
